@@ -25,8 +25,7 @@ namespace Work3.Models
             CreateFullName());
 
         private int RandomizeNewId() =>
-            new Random(DateTime.Now.Millisecond)
-            .Next(1, int.MaxValue);
+            new Random().Next(1, int.MaxValue);
 
         private string CreateFullName() =>
             $"{Name} {Surname} {Patronymic}";

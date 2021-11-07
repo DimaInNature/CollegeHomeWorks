@@ -25,7 +25,6 @@ namespace Work3.Models
             (RandomizeNewId(), name, genre, ageRestriction, idAuthor);
 
         private int RandomizeNewId() =>
-            new Random(DateTime.Now.Millisecond)
-            .Next(1, int.MaxValue);
+            new Random().Next(1, int.MaxValue);
     }
 }
