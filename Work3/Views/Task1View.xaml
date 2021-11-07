@@ -1,0 +1,1858 @@
+﻿<Window
+    x:Class="Work3.Views.Task1View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Work3.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Work3.ViewModels"
+    x:Name="ThisWindow"
+    Title="Task 1"
+    Width="800"
+    Height="500"
+    Background="Transparent"
+    MouseLeftButtonDown="ThisWindow_MouseLeftButtonDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:Task1ViewModel />
+    </Window.DataContext>
+
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--#region Top-->
+
+        <Grid Grid.Row="0" Background="#4b3c39">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="25"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="Library" />
+
+            <Button
+                Grid.Column="2"
+                Width="30"
+                Height="32"
+                Margin="0,0,40,0"
+                HorizontalAlignment="Right"
+                Command="{Binding ShowSearchWindowButtonClickCommand}"
+                CommandParameter="{Binding ElementName=ThisWindow}"
+                Style="{DynamicResource ControlButtonFindStyle}" />
+
+            <Button
+                Grid.Column="2"
+                Width="25"
+                Height="25"
+                Margin="0,0,10,0"
+                HorizontalAlignment="Right"
+                Command="{Binding ShutdownButtonClickCommand}"
+                Style="{DynamicResource ControlWhiteButtonCloseStyle}" />
+
+        </Grid>
+
+        <!--#endregion-->
+
+        <!--#region Body-->
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <!--#region Grid`s Area-->
+
+            <!--#region Books Grid-->
+
+            <Grid x:Name="BooksGrid" Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--#region Left Menu-->
+
+                <Grid Grid.Column="0">
+
+                    <StackPanel>
+
+                        <RadioButton
+                            x:Name="CreateBooksRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Create"
+                            FontSize="15"
+                            IsChecked="True">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="ViewBooksRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Read"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="EditBooksRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Update"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="DeleteBooksRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Delete"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Create Grid-->
+
+                <Grid x:Name="CreateBooksGrid" Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBox
+                            Grid.Row="1"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Name"
+                            Text="{Binding BookName}" />
+
+                        <TextBox
+                            Grid.Row="2"
+                            Width="200"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Genre"
+                            Text="{Binding BookGenre}" />
+
+                        <TextBox
+                            Grid.Row="3"
+                            Width="200"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Age restriction"
+                            Text="{Binding BookAgeRestriction}" />
+
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+
+                        <TextBlock
+                            Width="80"
+                            Height="25"
+                            Margin="0,45,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="#f0522b"
+                            Text="Authors" />
+
+                        <ListBox
+                            Height="200"
+                            Margin="10,0,10,0"
+                            ItemsSource="{Binding Authors}"
+                            SelectedItem="{Binding CreateAuthorSelectedItem}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding FullName}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                    </Grid>
+
+                    <Button
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="160"
+                        Height="37"
+                        Margin="0,0,0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding CreateBookButtonClickCommand}"
+                        Content="Create"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region View Grid-->
+
+                <Grid x:Name="ViewBooksGrid" Grid.Column="1">
+
+                    <ListBox ItemsSource="{Binding Books, Mode=TwoWay}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Name}" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Genre}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding AgeRestriction}" />
+
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding IdAuthor}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Update Grid-->
+
+                <Grid x:Name="EditBooksGrid" Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox
+                        Grid.Column="1"
+                        ItemsSource="{Binding Books}"
+                        SelectedItem="{Binding UpdateBookSelectedItem}">
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <i:InvokeCommandAction Command="{Binding UpdateBookSelectedItemClickCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Name}" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Genre}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding AgeRestriction}" />
+
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding IdAuthor}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBox
+                            Grid.Row="1"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Name"
+                            Text="{Binding UpdateBookName}" />
+
+                        <TextBox
+                            Grid.Row="2"
+                            Width="200"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Genre"
+                            Text="{Binding UpdateBookGenre}" />
+
+                        <TextBox
+                            Grid.Row="3"
+                            Width="200"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Age restriction"
+                            Text="{Binding UpdateBookAgeRestriction}" />
+
+                        <Button
+                            Grid.Row="4"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            Command="{Binding UpdateBookButtonClickCommand}"
+                            Content="Save"
+                            Style="{DynamicResource ButtonStyle}" />
+
+                    </Grid>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Delete Grid-->
+
+                <Grid x:Name="DeleteBooksGrid" Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <ListBox
+                        Grid.Row="0"
+                        ItemsSource="{Binding Books}"
+                        SelectedItem="{Binding DeleteBookSelectedItem}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Name}" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Genre}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding AgeRestriction}" />
+
+                                    <TextBlock
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding IdAuthor}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Button
+                        Grid.Row="1"
+                        Width="150"
+                        Height="40"
+                        Command="{Binding DeleteBookButtonClickCommand}"
+                        Content="Delete"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=EditBooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BooksRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadersRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=AuthorsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region Readers Grid-->
+
+            <Grid x:Name="ReadersGrid" Grid.Row="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--#region Left Menu-->
+
+                <Grid Grid.Column="0">
+
+                    <StackPanel>
+
+                        <RadioButton
+                            x:Name="CreateReadersRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Create"
+                            FontSize="15"
+                            IsChecked="True">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="ViewReadersRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="View"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="UpdateReadersRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Update"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="DeleteReadersRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Delete"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Create Grid-->
+
+                <Grid
+                    x:Name="CreateReadersGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBox
+                            Grid.Row="1"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Name"
+                            Text="{Binding ReaderName}" />
+
+                        <TextBox
+                            Grid.Row="2"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Surname"
+                            Text="{Binding ReaderSurname}" />
+
+                        <TextBox
+                            Grid.Row="3"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Patronymic"
+                            Text="{Binding ReaderPatronymic}" />
+
+                        <TextBox
+                            Grid.Row="4"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Phone"
+                            Text="{Binding ReaderPhone}" />
+
+                        <DatePicker
+                            Grid.Row="5"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="15"
+                            SelectedDate="{Binding ReaderBirthDay}"
+                            Style="{DynamicResource DatePickerStyle}"
+                            Tag="BirthDay" />
+
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+
+                        <TextBlock
+                            Width="60"
+                            Height="25"
+                            Margin="0,35,0,0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="#f0522b"
+                            Text="Books" />
+
+                        <ListBox
+                            Height="220"
+                            Margin="10,0,10,0"
+                            ItemsSource="{Binding Books}"
+                            SelectedItem="{Binding CreateReaderSelectedBookItem}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding Name}" />
+
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding Genre}" />
+
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding AgeRestriction}" />
+
+                                        <TextBlock
+                                            Grid.Row="3"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding IdAuthor}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                    </Grid>
+
+                    <Button
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="160"
+                        Height="37"
+                        Margin="0,0,0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding CreateReaderButtonClickCommand}"
+                        Content="Create"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region View Grid-->
+
+                <Grid
+                    x:Name="ViewReadersrGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    IsHitTestVisible="False">
+
+                    <ListBox Grid.Column="0" ItemsSource="{Binding Readers}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding FullName}" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Phone}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding DateOfTaking}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Update Grid-->
+
+                <Grid
+                    x:Name="UpdateReadersGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBox
+                            Grid.Row="1"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Name"
+                            Text="{Binding UpdateReaderName}" />
+
+                        <TextBox
+                            Grid.Row="2"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Surname"
+                            Text="{Binding UpdateReaderSurname}" />
+
+                        <TextBox
+                            Grid.Row="3"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Patronymic"
+                            Text="{Binding UpdateReaderPatronymic}" />
+
+                        <TextBox
+                            Grid.Row="4"
+                            Width="200"
+                            Height="35"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Phone"
+                            Text="{Binding UpdateReaderPhone}" />
+
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+
+                        <ListBox
+                            Margin="10,0,10,0"
+                            ItemsSource="{Binding Readers}"
+                            SelectedItem="{Binding UpdateReaderSelectedItem, Mode=TwoWay}">
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding UpdateReaderSelectedItemClickCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding FullName}" />
+
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding Phone}" />
+
+                                        <TextBlock
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="13"
+                                            Foreground="#454545"
+                                            Text="{Binding DateOfTaking}" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+
+                        </ListBox>
+
+                    </Grid>
+
+                    <Button
+                        Grid.Column="0"
+                        Width="160"
+                        Height="37"
+                        Margin="0,0,0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding UpdateReaderButtonClickCommand}"
+                        Content="Update"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Delete Grid-->
+
+                <Grid
+                    x:Name="DeleteReadersGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+
+                    <ListBox
+                        Grid.Row="0"
+                        ItemsSource="{Binding Readers}"
+                        SelectedItem="{Binding DeleteReaderSelectedItem}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding FullName}" />
+
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding Phone}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding DateOfTaking}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Button
+                        Grid.Row="1"
+                        Width="150"
+                        Height="40"
+                        Margin="0,0,0,0"
+                        Command="{Binding DeleteReaderClickCommand}"
+                        Content="Удалить"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=UpdateReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BooksRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadersRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=AuthorsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region Authors Grid-->
+
+            <Grid x:Name="AuthorsGrid" Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--#region Left Menu-->
+
+                <Grid Grid.Column="0">
+
+                    <StackPanel>
+
+                        <RadioButton
+                            x:Name="CreateAuthorsRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Create"
+                            FontSize="15"
+                            IsChecked="True">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=ViewAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="ViewAuthorsRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="View"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=DeleteAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                        <RadioButton
+                            x:Name="DeleteAuthorsRadioButton"
+                            Grid.Column="0"
+                            Height="30"
+                            Margin="5"
+                            Content="Delete"
+                            FontSize="15"
+                            IsChecked="False">
+
+                            <RadioButton.Style>
+                                <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding ElementName=CreateAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ElementName=ViewAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                            <Setter Property="IsChecked" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </RadioButton.Style>
+
+                        </RadioButton>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Create Grid-->
+
+                <Grid
+                    x:Name="CreateAuthorsGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+
+                    <Grid Grid.Column="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Name"
+                            Text="{Binding AuthorName}" />
+
+                        <TextBox
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Surname"
+                            Text="{Binding AuthorSurname}" />
+
+                        <TextBox
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Width="200"
+                            Height="40"
+                            HorizontalAlignment="Center"
+                            FontSize="17"
+                            Style="{DynamicResource ColorTextBoxStyle}"
+                            Tag="Patronymic"
+                            Text="{Binding AuthorPatronymic}" />
+
+                    </Grid>
+
+                    <Button
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Width="160"
+                        Height="37"
+                        Margin="0,0,0,20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding CreateAuthorButtonClickCommand}"
+                        Content="Create"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region View Grid-->
+
+                <Grid x:Name="ViewAuthorsGrid" Grid.Column="1">
+
+                    <ListBox IsHitTestVisible="False" ItemsSource="{Binding Authors}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding FullName}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Delete Grid-->
+
+                <Grid x:Name="DeleteAuthorsGrid" Grid.Column="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+
+                    <ListBox
+                        Grid.Row="0"
+                        ItemsSource="{Binding Authors}"
+                        SelectedItem="{Binding DeleteAuthorSelectedItem}">
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Foreground="#454545"
+                                        Text="{Binding FullName}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+
+                    <Button
+                        Grid.Row="1"
+                        Width="150"
+                        Height="40"
+                        Command="{Binding DeleteAuthorButtonClickCommand}"
+                        Content="Delete"
+                        FontSize="15"
+                        Style="{DynamicResource ButtonStyle}" />
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=CreateAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ViewAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=DeleteAuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
+                </Grid>
+
+                <!--#endregion-->
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=BooksRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadersRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=AuthorsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#endregion-->
+
+            <!--#region RadioButton`s Area-->
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <RadioButton
+                    x:Name="BooksRadioButton"
+                    Grid.Column="0"
+                    Margin="5"
+                    Content="Books"
+                    FontSize="21"
+                    IsChecked="True">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=ReadersRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=AuthorsRadioButton, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+                <RadioButton
+                    x:Name="ReadersRadioButton"
+                    Grid.Column="1"
+                    Margin="5"
+                    Content="Readers"
+                    FontSize="21"
+                    IsChecked="False">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=BooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=AuthorsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+                <RadioButton
+                    x:Name="AuthorsRadioButton"
+                    Grid.Column="2"
+                    Margin="5"
+                    Content="Authors"
+                    FontSize="21"
+                    IsChecked="False">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=BooksRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ReadersRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+            </Grid>
+
+            <!--#endregion-->
+
+        </Grid>
+
+        <!--#endregion-->
+
+    </Grid>
+
+</Window>
