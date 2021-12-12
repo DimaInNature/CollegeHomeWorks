@@ -1,0 +1,608 @@
+﻿<UserControl
+    x:Class="Work4.Views.MovementLogs.MovementLogsUpdateView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Work4.Views.MovementLogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Work4.ViewModels.MovementLogs"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:MovementLogsUpdateViewModel />
+    </UserControl.DataContext>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ComboBox
+                x:Name="WorkStatusCombobox"
+                Grid.Row="1"
+                Width="200"
+                Height="35"
+                HorizontalAlignment="Center"
+                FontSize="18"
+                IsHitTestVisible="{Binding ElementName=UpdateButton, Path=IsEnabled}"
+                Style="{DynamicResource ModernComboBox}"
+                Text="{Binding WorkStatus}">
+                <ComboBoxItem Content="Work" />
+                <ComboBoxItem Content="Not work" />
+            </ComboBox>
+
+            <TextBox
+                x:Name="RateTextbox"
+                Grid.Row="2"
+                Width="200"
+                Height="35"
+                HorizontalAlignment="Center"
+                FontSize="17"
+                IsHitTestVisible="{Binding ElementName=UpdateButton, Path=IsEnabled}"
+                Style="{DynamicResource ColorTextBoxStyle}"
+                Tag="Rate"
+                Text="{Binding Rate}" />
+
+            <TextBox
+                x:Name="OrderNumberTextbox"
+                Grid.Row="3"
+                Width="200"
+                Height="35"
+                HorizontalAlignment="Center"
+                FontSize="17"
+                IsHitTestVisible="{Binding ElementName=UpdateButton, Path=IsEnabled}"
+                Style="{DynamicResource ColorTextBoxStyle}"
+                Tag="Order"
+                Text="{Binding OrderNumber}" />
+
+            <DatePicker
+                x:Name="DateOfEmploymentDatepicker"
+                Grid.Row="4"
+                Width="200"
+                Height="40"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                IsHitTestVisible="{Binding ElementName=UpdateButton, Path=IsEnabled}"
+                SelectedDate="{Binding DateOfEmployment}"
+                Style="{DynamicResource DatePickerStyle}"
+                Tag="Date of employment" />
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*" />
+                <RowDefinition />
+                <RowDefinition Height="0.3*" />
+            </Grid.RowDefinitions>
+
+            <!--#region Radiobutton-->
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <RadioButton
+                    x:Name="EmployeRadioButton"
+                    Grid.Column="0"
+                    Width="80"
+                    Height="40"
+                    Content="Employe"
+                    FontSize="12"
+                    IsChecked="False">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+                <RadioButton
+                    x:Name="StructuralDivisionsRadioButton"
+                    Grid.Column="1"
+                    Width="80"
+                    Height="40"
+                    Content="Divisions"
+                    FontSize="12"
+                    IsChecked="False">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+                <RadioButton
+                    x:Name="PostsRadioButton"
+                    Grid.Column="2"
+                    Width="80"
+                    Height="40"
+                    Content="Posts"
+                    FontSize="12"
+                    IsChecked="False">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+                <RadioButton
+                    x:Name="ReadRadioButton"
+                    Grid.Column="3"
+                    Width="80"
+                    Height="40"
+                    Margin="0,0,5,0"
+                    Content="Read"
+                    FontSize="12"
+                    IsChecked="True">
+
+                    <RadioButton.Style>
+                        <Style BasedOn="{StaticResource MenuRadioButton}" TargetType="RadioButton">
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                    <Setter Property="IsChecked" Value="False" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+                    </RadioButton.Style>
+
+                </RadioButton>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region  Employe-->
+
+            <Grid Grid.Row="1" Margin="0,0,10,0">
+
+                <ListBox
+                    ItemsSource="{Binding Employees, Mode=TwoWay}"
+                    SelectedIndex="{Binding EmployeIndex, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedEmploye, Mode=TwoWay}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Name}" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Surname}" />
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Gender}" />
+
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Address}" />
+
+                                <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding BirthDay, StringFormat=dd/MM/yyyy}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region  Structural Divisions-->
+
+            <Grid Grid.Row="1" Margin="0,0,10,0">
+
+                <ListBox
+                    ItemsSource="{Binding StructuralDivisions, Mode=TwoWay}"
+                    SelectedIndex="{Binding StructuralDivisionIndex, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedStructuralDivision, Mode=TwoWay}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+
+                                <TextBlock
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Name}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Grid.Style>
+
+                    <Style TargetType="Grid">
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region  Posts-->
+
+            <Grid Grid.Row="1" Margin="0,0,10,0">
+
+                <ListBox
+                    ItemsSource="{Binding Posts, Mode=TwoWay}"
+                    SelectedIndex="{Binding PostIndex, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedPost, Mode=TwoWay}">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Name}" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Wage}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Grid.Style>
+
+                    <Style TargetType="Grid">
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+            <!--#region  Read-->
+
+            <Grid Grid.Row="1" Margin="0,0,10,0">
+
+                <ListBox ItemsSource="{Binding MovementLogs, Mode=TwoWay}" SelectedItem="{Binding SelectedMovementLog}">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding SelectMovementLogCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Rate}" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding Salary}" />
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding DateOfEmployment, StringFormat=dd/MM/yyyy}" />
+
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding OrderNumber}" />
+
+                                <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    FontSize="13"
+                                    Foreground="#454545"
+                                    Text="{Binding WorkStatus}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Grid.Style>
+
+                    <Style TargetType="Grid">
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EmployeRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=StructuralDivisionsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ReadRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=PostsRadioButton, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Grid.Style>
+
+            </Grid>
+
+            <!--#endregion-->
+
+        </Grid>
+
+        <Button
+            x:Name="UpdateButton"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Width="160"
+            Height="37"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Command="{Binding UpdateMovementLogCommand}"
+            Content="Update"
+            FontSize="15">
+            <Button.Style>
+                <Style BasedOn="{StaticResource ButtonStyle}" TargetType="Button">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=WorkStatusCombobox, Path=Text}" Value="">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=SalaryTextbox, Path=Text}" Value="">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=SalaryTextbox, Path=(Validation.HasError)}" Value="True">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=RateTextbox, Path=Text}" Value="">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=RateTextbox, Path=(Validation.HasError)}" Value="True">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=OrderNumberTextbox, Path=Text}" Value="">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=DateOfEmploymentDatepicker, Path=Text}" Value="">
+                            <Setter Property="IsEnabled" Value="False" />
+                            <Setter Property="Background" Value="Gray" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+    </Grid>
+
+</UserControl>
