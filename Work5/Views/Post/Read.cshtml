@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="container">
+
+        <div class="table">
+            <div class="table-header">
+                <div class="header__item"><b id="Name" class="filter__link">Name</b></div>
+                <div class="header__item"><b id="Wage" class="filter__link">Wage</b></div>
+                <div class="header__item"><b id="Wage" class="filter__link">Is Free</b></div>
+            </div>
+            <div class="table-content">
+                @foreach (var i in ViewBag.Posts)
+                {
+                <div class="table-row">
+                    <div class="table-data">@i.Name</div>
+                    <div class="table-data">@i.Wage</div>
+                    <div class="table-data">@i.IsFree</div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

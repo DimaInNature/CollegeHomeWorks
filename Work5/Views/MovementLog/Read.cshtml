@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="container">
+
+        <div class="table">
+            <div class="table-header">
+                <div class="header__item"><b id="Status" class="filter__link filter__link--number">Status</b></div>
+                <div class="header__item"><b id="EmployeFullName" class="filter__link filter__link--number">Employe</b></div>
+                <div class="header__item"><b id="PostName" class="filter__link filter__link--number">Post</b></div>
+                <div class="header__item"><b id="PostName" class="filter__link filter__link--number">Rate</b></div>
+                <div class="header__item"><b id="DateOfEmployment" class="filter__link filter__link--number">Date of employment</b></div>
+                <div class="header__item"><b id="DateOfDismission" class="filter__link filter__link--number">Date of dismission</b></div>
+                <div class="header__item"><b id="Description" class="filter__link">Description</b></div>
+            </div>
+            <div class="table-content">
+                @foreach (var i in ViewBag.MovementLogs)
+                {
+                <div class="table-row">
+                    <div class="table-data">@i.Status</div>
+                    <div class="table-data">@i.Employe.Name @i.Employe.Surname @i.Employe.Patronymic</div>
+                    <div class="table-data">@i.Post.Name</div>
+                    <div class="table-data">@i.Rate</div>
+                    <div class="table-data">@i.DateOfEmployment</div>
+                    <div class="table-data">@i.DateOfDismission</div>
+                    <div class="table-data">@i.Description</div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

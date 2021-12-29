@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div>
+        <h3>
+            Select all current employee positions with salary
+            (Base wage * Rate amount) and the date of acceptance for this position).
+        </h3>
+        <form method="post" action="~/Task/Two">
+            <p>Select employe</p>
+            <p>
+                <select id="employeId" name="employeId">
+                    @foreach (var i in ViewBag.Employees)
+                    {
+                        <option value="@i.Id">@i.Name @i.Surname @i.Patronymic</option>
+                    }
+                </select>
+            </p>
+            <input type="submit" value="Select" name="employeId" />
+        </form>
+    </div>
+</body>

@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Read employees</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="table">
+            <div class="table-header">
+                <div class="header__item"><b id="Name" class="filter__link">Name</b></div>
+                <div class="header__item"><b id="Surname" class="filter__link">Surname</b></div>
+                <div class="header__item"><b id="Patronymic" class="filter__link filter__link--number">Patronymic</b></div>
+                <div class="header__item"><b id="Gender" class="filter__link filter__link--number">Gender</b></div>
+                <div class="header__item"><b id="BirthDay" class="filter__link filter__link--number">BirthDay</b></div>
+            </div>
+            <div class="table-content">
+                @foreach (var i in ViewBag.Employees)
+                {
+                    <div class="table-row">
+                        <div class="table-data">@i.Name</div>
+                        <div class="table-data">@i.Surname</div>
+                        <div class="table-data">@i.Patronymic</div>
+                        <div class="table-data">@i.Gender</div>
+                        <div class="table-data">@i.BirthDay</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>

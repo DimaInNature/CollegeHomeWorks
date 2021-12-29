@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Three";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Display a list of employees accepted at the selected time interval</h3>
+<form method="post" action="~/Task/Three">
+    <p>Input first date</p>
+    <input type="date" name="firstDate" />
+    <p>Input secondDate</p>
+    <input type="date" name="secondDate" />
+    <input type="submit" value="Select" />
+</form>

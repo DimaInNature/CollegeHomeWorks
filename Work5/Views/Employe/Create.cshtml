@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create employe</title>
+</head>
+<body>
+    <div>
+        <h3>Create employe</h3>
+        <form method="post" action="">
+            <p>Input name</p>
+            <input type="text" name="Name" /> 
+            <p>Input surname</p>
+            <input type="text" name="Surname" /> 
+            <p>Input patronymic</p>
+            <input type="text" name="Patronymic" /> 
+            <p>Select gender</p>
+            <p>
+                <select id="Gender" name="Gender">
+                    <option value="Man">Man</option>
+                    <option value="Woman">Woman</option>
+                    <option value="Other">Other</option>
+                </select>
+            </p>
+            <p>Input birthday </p>
+            <input type="date" name="Birthday" /> 
+            <input type="submit" value="Create" /> 
+        </form>
+    </div>
+</body>
+</html>
+

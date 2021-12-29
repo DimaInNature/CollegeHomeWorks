@@ -1,0 +1,141 @@
+﻿nav.primary-navigation {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    top: 0;
+    position: center;
+}
+
+    nav.primary-navigation ul li {
+        list-style: none;
+        margin: 0 auto;
+        border-left: 2px solid #3ca0e7;
+        display: inline-block;
+        padding: 0 30px;
+        position: relative;
+        text-decoration: none;
+        text-align: center;
+        font-family: arvo;
+    }
+
+    nav.primary-navigation li a {
+        color: black;
+    }
+
+        nav.primary-navigation li a:hover {
+            color: #3ca0e7;
+        }
+
+    nav.primary-navigation li:hover {
+        cursor: pointer;
+    }
+
+    nav.primary-navigation ul li ul {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        padding-left: 0;
+        left: 0;
+        display: none;
+        background: white;
+    }
+
+        nav.primary-navigation ul li:hover > ul,
+        nav.primary-navigation ul li ul:hover {
+            visibility: visible;
+            opacity: 1;
+            display: block;
+            min-width: 250px;
+            text-align: left;
+            padding-top: 20px;
+            box-shadow: 0px 3px 5px -1px #ccc;
+        }
+
+        nav.primary-navigation ul li ul li {
+            clear: both;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 20px;
+            border-style: none;
+        }
+
+            nav.primary-navigation ul li ul li a:hover {
+                padding-left: 10px;
+                border-left: 2px solid #3ca0e7;
+                transition: all 0.3s ease;
+            }
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #3ca0e7;
+    }
+
+ul li ul li a {
+    transition: all 0.5s ease;
+}
+
+/* Table */
+
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 24px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.table {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+}
+
+.table-header {
+    display: flex;
+    width: 100%;
+    background: #000;
+    padding: 18px 0;
+}
+
+.table-row {
+    display: flex;
+    width: 100%;
+    padding: 18px 0;
+}
+
+    .table-row:nth-of-type(odd) {
+        background: #EEEEEE;
+    }
+
+.table-data, .header__item {
+    flex: 1 1 20%;
+    text-align: center;
+}
+
+.header__item {
+    text-transform: uppercase;
+}
+
+.filter__link {
+    color: white;
+    position: relative;
+}

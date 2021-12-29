@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create movement log</title>
+</head>
+<body>
+    <div>
+        <h3>Create movement log</h3>
+        
+        <form method="post" action="">
+            <p>Select employe </p>
+            <p>
+                <select id="EmployeId" name="EmployeId">
+                    @foreach (var i in ViewBag.Employees)
+                    {
+                        <option value="@i.Id">@i.Name @i.Surname @i.Patronymic</option>
+                    }
+                </select>
+            </p>
+            <p>Select post </p>
+            <p>
+                <select id="PostId" name="PostId">
+                    @foreach (var i in ViewBag.Posts)
+                    {
+                        <option value="@i.Id">@i.Name</option>
+                    }
+                </select>
+            </p>
+            <p>Select status </p>
+            <p>
+                <select id="Status" name="Status">
+                    <option value="Work">Work</option>
+                    <option value="Dismiss">Dismiss</option>
+                </select>
+            </p>
+            <p>Input rate </p>
+            <input type="number" name="Rate" />
+            <p>Input description </p>
+            <input type="text" name="Description" />
+            <input type="submit" value="Create" />
+        </form>
+    </div>
+</body>
+</html>

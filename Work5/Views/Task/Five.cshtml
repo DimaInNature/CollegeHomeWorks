@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div>
+        <h3>
+            Formation of information about the employee's movement in chronological order
+        </h3>
+        <form method="post" action="~/Task/Five">
+            <p>Select employe</p>
+            <p>
+                <select id="employeId" name="employeId">
+                    @foreach (var i in ViewBag.Employees)
+                    {
+                        <option value="@i.Id">@i.Name @i.Surname @i.Patronymic</option>
+                    }
+                </select>
+            </p>
+            <input type="submit" value="Select" />
+        </form>
+    </div>
+</body>

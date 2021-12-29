@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div>
+        <h3>Select employees of a certain position</h3>
+        <form method="post" action="~/Task/One">
+            <p>Select post</p>
+            <p>
+                <select name="postName">
+                    @foreach (var i in ViewBag.Posts)
+                    {
+                        <option>@i.Name</option>
+                    }
+                </select>
+            </p>
+            <input type="submit" value="Select" />
+        </form>
+    </div>
+</body>
